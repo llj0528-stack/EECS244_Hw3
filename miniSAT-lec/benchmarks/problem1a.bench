@@ -1,0 +1,42 @@
+INPUT(a)
+INPUT(b)
+
+OUTPUT(miter)
+
+a_not = NOT(a)
+a_and_b = AND(a,b)
+a_or_b = OR(a,b)
+a_not_and_b = AND(a_not,b)
+a_not_or_b = OR(a_not,b)
+
+bit0_1 = OR(a_and_b, a)
+bit0_2 = BUFF(a)
+
+bit1_1 = OR(a,a_not_and_b)
+bit1_2 = BUFF(a_or_b)
+
+bit2_1 = OR(a_and_b,a_not)
+bit2_2 = BUFF(a_not_or_b)
+
+bit3_1 = OR(a,a_or_b)
+bit3_2 = BUFF(a_or_b)
+
+# The following equivalences are true:
+#   bit0_1 = bit0_2
+#   bit1_1 = bit1_2
+#   bit2_1 = bit2_2
+#   bit3_1 = bit3_2
+
+# Create a miter. That is, create logic that will be true 
+# if and only if any of the above equivalences are violated.
+
+
+diff0 = XOR(bit0_1,bit0_2)
+diff1 = XOR(bit1_1,bit1_2)
+diff2 = XOR(bit2_1,bit2_2)
+diff3 = XOR(bit3_1,bit3_2)
+
+or01 = OR(diff0,diff1)
+or23 = OR(diff2,diff3)
+miter = OR(or01,or23)
+

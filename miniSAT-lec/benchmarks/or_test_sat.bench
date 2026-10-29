@@ -1,0 +1,11 @@
+
+INPUT(a)
+INPUT(b)
+
+OUTPUT(g)
+
+c = OR(a,b)
+d = NOR(a,b)
+e = NOT(c)
+f = XOR(d,e)
+g = NOT(f)

@@ -1,0 +1,23 @@
+
+INPUT(a)
+INPUT(b)
+INPUT(c)
+INPUT(d)
+
+OUTPUT(miter)
+
+# Original circuit
+h = OR(a,b)
+e = NOT(c)
+g = AND(h,c)
+i = AND(e,d)
+f = OR(i,g)
+
+# Faulty circuit (h stuck at 1)
+a_not = NOT(a)
+h_fault = OR(a,a_not)
+g_fault = AND(h_fault,c)
+f_fault = OR(i,g_fault)
+
+# Equivalence checking miter
+miter = XOR(f,f_fault)

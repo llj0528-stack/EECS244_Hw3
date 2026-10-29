@@ -1,0 +1,11 @@
+
+INPUT(a)
+INPUT(b)
+
+OUTPUT(g)
+
+c = AND(a,b)
+d = NAND(a,b)
+e = NOT(c)
+f = XOR(d,e)
+g = NOT(f)
